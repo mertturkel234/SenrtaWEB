@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SentraEDR - Yeni Nesil Gerçek Zamanlı Koruma</title>
+    <meta name="description" content="SentraEDR, Windows için Rust ile geliştirilmiş, düşük bellek tüketen, davranışsal analiz ile RAT ve stealer gibi modern tehditleri tespit edip güvenli müdahale sağlayan yüksek performanslı bir EDR platformudur.">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@400;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="shield-overlay" class="shield-overlay hidden">
+        <div class="shield-icon">🛡️</div>
+        <div id="shield-text">SentraEDR Müdahale Ediyor...</div>
+    </div>
+    <div id="canvas-container"></div>
+    
+    <nav class="navbar">
+        <div class="logo">
+            <span class="highlight">Sentra</span>EDR
+        </div>
+        <div class="nav-links">
+            <a href="#story" data-i18n="nav_story">Vizyon</a>
+            <a href="#dashboard" data-i18n="nav_dashboard">Dashboard</a>
+            <a href="#architecture" data-i18n="nav_architecture">Mimari</a>
+            <a href="#team" data-i18n="nav_team">Ekip</a>
+            <div class="lang-switch">
+                <button id="lang-tr" class="active">TR</button>
+                <span class="lang-sep">|</span>
+                <button id="lang-en">EN</button>
+            </div>
+            <a href="https://github.com/taasezer/SentraEDR/tree/Mert" target="_blank" class="btn btn-outline" data-i18n="nav_github">GitHub'da İncele</a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="badge" data-i18n="hero_badge">🚀 Yeni Monolitik Mimari Yayında</div>
+                <h1 data-i18n="hero_title">Yeni Nesil <br><span class="highlight-text">Gerçek Zamanlı</span> Koruma</h1>
+                <p data-i18n="hero_desc">Windows ETW altyapısını kullanan, Rust tabanlı düşük kaynak tüketimli ve olay güdümlü Uç Nokta Tespit ve Yanıt (EDR) Platformu. Modern SOC standartlarında, üretime hazır güvenli müdahale.</p>
+                <div class="cta-group">
+                    <a href="#dashboard" class="btn btn-primary" data-i18n="hero_btn1">Sistemi İncele</a>
+                    <a href="https://github.com/taasezer/SentraEDR/tree/Mert" target="_blank" class="btn btn-secondary" data-i18n="hero_btn2">Projeyi Görüntüle</a>
+                    <button id="btn-simulate" class="btn btn-danger" data-i18n="hero_btn_sim">Canlı Saldırı Simüle Et</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Story Section -->
+        <section id="story" class="story-section">
+            <div class="story-container">
+                <h2><span data-i18n="story_title_1">Neden</span> <span class="highlight">SentraEDR?</span></h2>
+                <p data-i18n="story_p1">Geleneksel antivirüs programlarının devri kapanıyor. Günümüzde karmaşık tehdit aktörleri, imza tabanlı korumaları atlatarak RAT (Uzaktan Erişim Truva Atı) ve benzeri saldırılarla sistemlere sızıyor. Mevcut güvenlik çözümleri ise bu modern tehditleri ya gözden kaçırıyor ya da sistemi aşırı yorarak performansı düşürüyor.</p>
+                <p data-i18n="story_p2">SentraEDR olarak bu çıkmaza yeni bir standart getiriyoruz. Sadece statik dosyaları değil, sistemdeki <strong>"davranışları"</strong> proaktif olarak analiz ediyoruz. Windows ETW (Event Tracing for Windows) altyapısının kalbine entegre çalışarak, şüpheli bir aktivite gerçekleştiği an milisaniyeler içinde tespit ediyor ve müdahale ediyoruz.</p>
+                <p data-i18n="story_p3">Güvenlikten ödün vermeden maksimum performans sağlamak için çekirdeğimizi Rust ile inşa ettik. Sıfır gecikmeli monolitik mimarimiz sayesinde arka plandaki tespit motorumuz kesintisiz çalışır. <em>Kullanıcı arayüzünde (UI) beklenmedik bir kesinti yaşansa dahi, tespit motorumuz sistemi korumaya tavizsiz bir şekilde devam eder.</em></p>
+            </div>
+        </section>
+
+        <!-- Terminal Simulation Section -->
+        <section id="terminal-section" class="terminal-section">
+            <div class="section-title">
+                <h2 data-i18n="term_title">Sıfır Kurulum, <span class="highlight">Maksimum Güç</span></h2>
+                <p data-i18n="term_desc">Monolitik mimari sayesinde tek bir komutla tüm motoru ve arayüzü ayağa kaldırın.</p>
+            </div>
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="term-btn close"></div>
+                    <div class="term-btn min"></div>
+                    <div class="term-btn max"></div>
+                    <div class="term-title">Administrator: SentraEDR</div>
+                </div>
+                <div class="terminal-body" id="typewriter">
+                    <!-- JS will inject lines here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Live Dashboard Section -->
+        <section id="dashboard" class="dashboard-section">
+            <div class="section-title">
+                <h2 data-i18n="dash_title">Gerçek Zamanlı <span class="highlight">Görünürlük</span></h2>
+                <p data-i18n="dash_desc">Tauri tabanlı şık ve modern arayüz ile sisteminizdeki her detayı anlık olarak izleyin.</p>
+            </div>
+            
+            <div class="mock-dashboard">
+                <div class="dash-header">
+                    <div class="dash-logo"><span class="highlight">Sentra</span>EDR</div>
+                    <div class="dash-status"><span class="dot"></span> <span data-i18n="dash_engine">Engine Active</span></div>
+                </div>
+                
+                <div class="dash-metrics">
+                    <div class="metric-card">
+                        <div class="m-label" data-i18n="dash_cpu">CPU Usage</div>
+                        <div class="m-value"><span id="live-cpu">27.0</span>%</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="m-label" data-i18n="dash_events">Events / Sec</div>
+                        <div class="m-value" id="live-events">1,452</div>
+                    </div>
+                    <div class="metric-card alert">
+                        <div class="m-label" data-i18n="dash_threats">Blocked Threats</div>
+                        <div class="m-value text-red" id="live-threats">3</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="m-label" data-i18n="dash_mem">Memory Usage</div>
+                        <div class="m-value"><span id="live-mem">14.2</span> MB</div>
+                    </div>
+                </div>
+
+                <div class="dash-grid">
+                    <div class="dash-panel process-monitor">
+                        <h3 data-i18n="dash_proc">Process Monitor</h3>
+                        <table class="process-table">
+                            <thead>
+                                <tr>
+                                    <th>PID</th>
+                                    <th data-i18n="dash_proc_name">Process Name</th>
+                                    <th>User</th>
+                                    <th data-i18n="dash_proc_int">Integrity</th>
+                                </tr>
+                            </thead>
+                            <tbody id="live-processes">
+                                <tr><td>27568</td><td>chrome.exe</td><td>S-1-5-21...</td><td><span class="badge-medium">MEDIUM</span></td></tr>
+                                <tr><td>27540</td><td>svchost.exe</td><td>S-1-5-18</td><td><span class="badge-untrusted">UNTRUSTED</span></td></tr>
+                                <tr><td>27464</td><td>powershell.exe</td><td>S-1-5-21...</td><td><span class="badge-high">HIGH</span></td></tr>
+                                <tr><td>26516</td><td>Codex.exe</td><td>S-1-5-21...</td><td><span class="badge-medium">MEDIUM</span></td></tr>
+                                <tr><td>26024</td><td>mc-neo-host.exe</td><td>UNKNOWN</td><td><span class="badge-untrusted">UNTRUSTED</span></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="dash-panel detection-timeline">
+                        <h3 data-i18n="dash_timeline">Detection Timeline</h3>
+                        <div class="timeline-list">
+                            <div class="timeline-item">
+                                <div class="t-time">10:45:22</div>
+                                <div class="t-title text-red">Process Injection</div>
+                                <div class="t-desc" data-i18n="dash_alert1">Suspicious remote thread created in explorer.exe</div>
+                                <div class="t-actions">
+                                    <button class="btn-sm" data-i18n="btn_inv">Investigate</button>
+                                    <button class="btn-sm btn-red" data-i18n="btn_block">Block Process</button>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="t-time">10:42:15</div>
+                                <div class="t-title text-orange">Network Anomaly</div>
+                                <div class="t-desc" data-i18n="dash_alert2">Outbound connection to known C2 server</div>
+                                <div class="t-actions">
+                                    <button class="btn-sm" data-i18n="btn_inv">Investigate</button>
+                                    <button class="btn-sm btn-red" data-i18n="btn_block">Block Process</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Architecture Flowchart -->
+        <section id="architecture" class="arch-section">
+            <div class="section-title">
+                <h2 data-i18n="arch_title">Kesintisiz <span class="highlight">Veri Akışı</span></h2>
+                <p data-i18n="arch_desc">Windows Çekirdeğinden Güvenli İyileştirmeye (Safe Remediation) uzanan uçtan uca mimarimiz.</p>
+            </div>
+            <div class="flowchart">
+                <div class="flow-node">
+                    <div class="icon">💻</div>
+                    <h4 data-i18n="arch_1">Windows OS</h4>
+                    <p data-i18n="arch_1_d">Sistem Çağrıları</p>
+                </div>
+                <div class="flow-arrow"></div>
+                <div class="flow-node highlight-node">
+                    <div class="icon">📡</div>
+                    <h4 data-i18n="arch_2">ETW Altyapısı</h4>
+                    <p data-i18n="arch_2_d">Olay Günlükleri</p>
+                </div>
+                <div class="flow-arrow animated-arrow"></div>
+                <div class="flow-node core-node">
+                    <div class="icon">🧠</div>
+                    <h4 data-i18n="arch_3">Rust Motoru</h4>
+                    <p data-i18n="arch_3_d">Davranışsal Analiz</p>
+                </div>
+                <div class="flow-arrow"></div>
+                <div class="flow-node">
+                    <div class="icon">🛡️</div>
+                    <h4 data-i18n="arch_4">Müdahale</h4>
+                    <p data-i18n="arch_4_d">Güvenli İyileştirme</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="features-section">
+            <div class="section-title">
+                <h2 data-i18n="feat_title">Dünya Standartlarında <span class="highlight">Yenilikçi Özellikler</span></h2>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="icon">⚡</div>
+                    <h3 data-i18n="feat_1">Tekil EXE (Monolitik)</h3>
+                    <p data-i18n="feat_1_d">Kernel/ETW motoru ve Tauri arayüzü aynı yürütülebilir dosyada birleştirildi.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🚀</div>
+                    <h3 data-i18n="feat_2">Sıfır İletişim Gecikmesi</h3>
+                    <p data-i18n="feat_2_d">IPC boruları yerine bellek üzerinden doğrudan iletişim ile 0 gecikmeli veri aktarımı.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🛡️</div>
+                    <h3 data-i18n="feat_3">Güvenlik İzinleri & UAC</h3>
+                    <p data-i18n="feat_3_d">Doğrudan yönetici ayrıcalıklarıyla (requireAdministrator) çalışarak derin sistem erişimi.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section id="team" class="team-section">
+            <div class="section-title">
+                <h2 data-i18n="team_title"><span class="highlight">QUE SERA</span> Ekibi</h2>
+                <p data-i18n="team_desc">SentraEDR platformunu hayata geçiren siber güvenlik ve yazılım mühendisliği ekibi.</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="t-avatar">MT</div>
+                    <h3>Mert Türkel</h3>
+                    <a href="https://github.com/mertturkel234/" target="_blank" class="t-github">GitHub Profili</a>
+                </div>
+                <div class="team-card">
+                    <div class="t-avatar">ÖF</div>
+                    <h3>Ömer Faruk Kurt</h3>
+                    <a href="https://github.com/omerkurt1/" target="_blank" class="t-github">GitHub Profili</a>
+                </div>
+                <div class="team-card">
+                    <div class="t-avatar">TS</div>
+                    <h3>Taha Sezer</h3>
+                    <a href="https://github.com/taasezer/" target="_blank" class="t-github">GitHub Profili</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter/Beta Form Section -->
+        <section id="beta" class="beta-section">
+            <div class="beta-container">
+                <h2 data-i18n="beta_title">Beta Sürecine Katılın</h2>
+                <p data-i18n="beta_desc">SentraEDR'nin erken erişim sürümünü denemek ve geliştirmemize katkıda bulunmak için e-posta adresinizi bırakın.</p>
+                <form class="beta-form" onsubmit="event.preventDefault(); alert('Kayıt başarılı! Teşekkürler.');">
+                    <input type="email" placeholder="E-Posta Adresiniz" required data-i18n-placeholder="beta_input">
+                    <button type="submit" class="btn btn-primary" data-i18n="beta_btn">Gönder</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span class="highlight">Sentra</span>EDR
+                <p data-i18n="foot_slogan">Geleceğin EDR Platformu</p>
+            </div>
+            <div class="footer-links">
+                <p data-i18n="foot_links">Bağlantılar</p>
+                <a href="https://github.com/mertturkel234/SenrtaWEB" target="_blank">SenrtaWEB Repo</a>
+                <a href="https://github.com/taasezer/SentraEDR/tree/Mert" target="_blank">SentraEDR Repo</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 SentraEDR (QUE SERA). <span data-i18n="foot_copy">Tüm hakları saklıdır.</span></p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
