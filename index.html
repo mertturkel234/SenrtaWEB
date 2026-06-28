@@ -6,6 +6,7 @@
     <title>SentraEDR - Yeni Nesil Gerçek Zamanlı Koruma</title>
     <meta name="description" content="SentraEDR, Windows için Rust ile geliştirilmiş, düşük bellek tüketen, davranışsal analiz ile RAT ve stealer gibi modern tehditleri tespit edip güvenli müdahale sağlayan yüksek performanslı bir EDR platformudur.">
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@400;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -17,6 +18,7 @@
     
     <nav class="navbar">
         <div class="logo">
+            <img src="logo.png" alt="SentraEDR Logo" class="nav-logo-img">
             <span class="highlight">Sentra</span>EDR
         </div>
         <div class="nav-links">
@@ -29,7 +31,7 @@
                 <span class="lang-sep">|</span>
                 <button id="lang-en">EN</button>
             </div>
-            <a href="https://github.com/taasezer/SentraEDR/tree/Mert" target="_blank" class="btn btn-outline" data-i18n="nav_github">GitHub'da İncele</a>
+            <a href="https://github.com/taasezer/SentraEDR" target="_blank" class="btn btn-outline" data-i18n="nav_github">GitHub'da İncele</a>
         </div>
     </nav>
 
@@ -42,7 +44,7 @@
                 <p data-i18n="hero_desc">Windows ETW altyapısını kullanan, Rust tabanlı düşük kaynak tüketimli ve olay güdümlü Uç Nokta Tespit ve Yanıt (EDR) Platformu. Modern SOC standartlarında, üretime hazır güvenli müdahale.</p>
                 <div class="cta-group">
                     <a href="#dashboard" class="btn btn-primary" data-i18n="hero_btn1">Sistemi İncele</a>
-                    <a href="https://github.com/taasezer/SentraEDR/tree/Mert" target="_blank" class="btn btn-secondary" data-i18n="hero_btn2">Projeyi Görüntüle</a>
+                    <a href="https://github.com/taasezer/SentraEDR" target="_blank" class="btn btn-secondary" data-i18n="hero_btn2">Projeyi Görüntüle</a>
                     <button id="btn-simulate" class="btn btn-danger" data-i18n="hero_btn_sim">Canlı Saldırı Simüle Et</button>
                 </div>
             </div>
@@ -86,7 +88,10 @@
             
             <div class="mock-dashboard">
                 <div class="dash-header">
-                    <div class="dash-logo"><span class="highlight">Sentra</span>EDR</div>
+                    <div class="dash-logo">
+                        <img src="logo.png" alt="SentraEDR Logo" class="dash-logo-img">
+                        <span class="highlight">Sentra</span>EDR
+                    </div>
                     <div class="dash-status"><span class="dot"></span> <span data-i18n="dash_engine">Engine Active</span></div>
                 </div>
                 
@@ -262,7 +267,7 @@
             <div class="footer-links">
                 <p data-i18n="foot_links">Bağlantılar</p>
                 <a href="https://github.com/mertturkel234/SenrtaWEB" target="_blank">SenrtaWEB Repo</a>
-                <a href="https://github.com/taasezer/SentraEDR/tree/Mert" target="_blank">SentraEDR Repo</a>
+                <a href="https://github.com/taasezer/SentraEDR" target="_blank">SentraEDR Repo</a>
             </div>
         </div>
         <div class="footer-bottom">

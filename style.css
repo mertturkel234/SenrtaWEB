@@ -59,6 +59,15 @@ body {
     font-size: 1.8rem;
     font-weight: 700;
     letter-spacing: -1px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nav-logo-img {
+    height: 35px;
+    width: auto;
+    object-fit: contain;
 }
 
 .highlight {
@@ -364,6 +373,15 @@ body {
 .dash-logo {
     font-weight: 700;
     font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dash-logo-img {
+    height: 24px;
+    width: auto;
+    object-fit: contain;
 }
 
 .dash-status {
